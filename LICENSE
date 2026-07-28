@@ -1,5 +1,6 @@
-LICENSE NOT YET SELECTED
+Domee Home Assistant integration is dual-licensed under your choice of:
 
-This file is a release-preparation placeholder, not a license grant.
-The repository owner must select and install the final license before any public
-distribution or release.
+- Apache License, Version 2.0 (see LICENSE-APACHE), or
+- MIT License (see LICENSE-MIT).
+
+SPDX-License-Identifier: MIT OR Apache-2.0

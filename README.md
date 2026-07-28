@@ -15,7 +15,7 @@ sensors, and stateless IR/RF commands exposed as buttons.
 This repository is being prepared for distribution and has not been published to
 HACS. For local validation, copy `custom_components/domee` into the
 `custom_components` directory of your Home Assistant configuration, restart Home
-Assistant, then add **Domee** from **Settings Ã¢â€ â€™ Devices & services**.
+Assistant, then add **Domee** from **Settings ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ Devices & services**.
 
 The public repository is
 [sil-main-coo/domee-home-assistant](https://github.com/sil-main-coo/domee-home-assistant).
@@ -48,3 +48,7 @@ stateless and therefore appear as buttons.
 
 See [troubleshooting](docs/troubleshooting.md) for recovery steps and
 [compatibility](docs/compatibility.md) for the supported contract.
+
+## License
+
+Licensed under your choice of [MIT](LICENSE-MIT) or [Apache-2.0](LICENSE-APACHE).
