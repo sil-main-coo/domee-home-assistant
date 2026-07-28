@@ -1,12 +1,12 @@
 {
   "domain": "domee",
   "name": "Domee",
-  "codeowners": [],
+  "codeowners": ["@Domee"],
   "config_flow": true,
-  "documentation": "https://github.com/OWNER/domee-home-assistant#readme",
+  "documentation": "https://github.com/sil-main-coo/domee-home-assistant#readme",
   "integration_type": "hub",
   "iot_class": "cloud_polling",
-  "issue_tracker": "https://github.com/OWNER/domee-home-assistant/issues",
+  "issue_tracker": "https://github.com/sil-main-coo/domee-home-assistant/issues",
   "requirements": [],
   "version": "0.1.0"
 }

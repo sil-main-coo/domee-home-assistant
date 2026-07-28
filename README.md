@@ -15,10 +15,11 @@ sensors, and stateless IR/RF commands exposed as buttons.
 This repository is being prepared for distribution and has not been published to
 HACS. For local validation, copy `custom_components/domee` into the
 `custom_components` directory of your Home Assistant configuration, restart Home
-Assistant, then add **Domee** from **Settings â†’ Devices & services**.
+Assistant, then add **Domee** from **Settings Ã¢â€ â€™ Devices & services**.
 
-The final HACS installation URL will be documented after the public repository
-owner and release metadata are approved.
+The public repository is
+[sil-main-coo/domee-home-assistant](https://github.com/sil-main-coo/domee-home-assistant).
+HACS installation will be documented after the first release is published.
 
 ## Configuration
 
