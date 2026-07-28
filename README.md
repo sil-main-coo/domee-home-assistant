@@ -12,14 +12,30 @@ sensors, and stateless IR/RF commands exposed as buttons.
 
 ## Installation
 
-This repository is being prepared for distribution and has not been published to
-HACS. For local validation, copy `custom_components/domee` into the
-`custom_components` directory of your Home Assistant configuration, restart Home
-Assistant, then add **Domee** from **Settings ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ Devices & services**.
-
 The public repository is
-[sil-main-coo/domee-home-assistant](https://github.com/sil-main-coo/domee-home-assistant).
-HACS installation will be documented after the first release is published.
+[`sil-main-coo/domee-home-assistant`](https://github.com/sil-main-coo/domee-home-assistant).
+It is supported as a HACS custom repository; it is not currently listed in the
+HACS default store.
+
+### HACS custom repository
+
+1. Open HACS and add `https://github.com/sil-main-coo/domee-home-assistant` as
+   an **Integration** custom repository.
+2. Find **Domee**, select release `v0.1.0`, and install it.
+3. Restart Home Assistant.
+4. Add **Domee** from **Settings > Devices & services**.
+
+If HACS cached repository data before a new release appeared, refresh HACS or
+reload the repository and try again.
+
+### Manual installation
+
+1. Download `domee.zip` from the
+   [v0.1.0 release](https://github.com/sil-main-coo/domee-home-assistant/releases/tag/v0.1.0).
+2. Extract its root-level files into
+   `<Home Assistant config>/custom_components/domee`.
+3. Restart Home Assistant and add **Domee** from
+   **Settings > Devices & services**.
 
 ## Configuration
 
@@ -48,6 +64,15 @@ stateless and therefore appear as buttons.
 
 See [troubleshooting](docs/troubleshooting.md) for recovery steps and
 [compatibility](docs/compatibility.md) for the supported contract.
+
+## Reinstall and rollback
+
+Reinstalling the same release preserves config-entry, device, and entity
+identities. Uninstalling removes the integration code but does not revoke the
+backend token; revoke it separately when access is no longer needed. Starting
+with a future release, rollback means reinstalling the previous published
+release after checking its compatibility matrix. No synthetic pre-0.1.0 release
+exists.
 
 ## License
 

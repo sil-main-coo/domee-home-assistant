@@ -1,21 +1,17 @@
-# Changelog
+# Domee v0.1.0
 
-## Unreleased
+The first Domee Home Assistant release includes:
 
-## 0.1.0 - 2026-07-28
-
-Initial production-style release:
-
-- Domee config flow and stable backend/account identity.
+- Domee config flow with stable backend/account identity.
 - Authoritative physical Wi-Fi switch entities.
 - Central hub connectivity and diagnostic sensors.
 - Stateless IR/RF commands and script buttons.
 - Token reauthentication and strict snapshot schema handling.
-- Home Assistant 2024.3.3 minimum support.
+- Minimum Home Assistant version 2024.3.3.
 
 Known limitations:
 
 - IR/RF state is not fabricated.
-- Updates use backend polling and cached authoritative telemetry.
+- Updates are polling/cache based.
 - There is no push, SSE, or WebSocket Home Assistant update channel.
 - A compatible Domee backend is required.

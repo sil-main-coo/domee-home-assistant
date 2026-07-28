@@ -109,7 +109,7 @@ foreach ($item in $targets) {
           --volume "${repositoryRoot}:/workspace" `
           --workdir /workspace `
           $stableImage `
-          sh -c "python scripts/build_release.py && python validation/validate_package.py"
+          sh -c "python scripts/build_release.py && python validation/validate_package.py && python validation/inspect_release_artifact.py"
       }
     }
   }

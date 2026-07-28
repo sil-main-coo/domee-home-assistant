@@ -111,3 +111,4 @@ jobs:
       - run: python validation/secret_scan.py
       - run: python scripts/build_release.py
       - run: python validation/validate_package.py
+      - run: python validation/inspect_release_artifact.py
