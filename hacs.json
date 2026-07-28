@@ -1,0 +1,7 @@
+{
+  "name": "Domee",
+  "homeassistant": "2024.3.3",
+  "zip_release": true,
+  "filename": "domee.zip",
+  "hide_default_branch": true
+}

@@ -1,0 +1,32 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to Domee",
+        "description": "Enter the Domee server URL and a Home Assistant integration token.",
+        "data": {
+          "base_url": "Server URL",
+          "token": "Integration token"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Reconnect Domee",
+        "description": "Enter a new Home Assistant integration token.",
+        "data": {
+          "token": "Integration token"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect to Domee",
+      "invalid_auth": "The integration token is invalid",
+      "invalid_response": "Domee returned an invalid response",
+      "missing_instance_id": "The Domee server installation identity is not configured",
+      "wrong_identity": "The token belongs to a different Domee server or account"
+    },
+    "abort": {
+      "already_configured": "This Domee account is already configured",
+      "reauth_entry_missing": "The Domee configuration entry no longer exists"
+    }
+  }
+}

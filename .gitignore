@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.ha/
+domee.zip
+validation/config/.storage/
+validation/config/home-assistant*.log*
+validation/config/home-assistant_v2.db*

@@ -1,0 +1,113 @@
+name: Quality gates
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  ha-minimum:
+    name: HA 2024.3.3
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: >-
+          docker run --rm
+          --volume "${{ github.workspace }}:/workspace:ro"
+          --workdir /workspace
+          --env PYTHONPATH=/workspace
+          ghcr.io/home-assistant/home-assistant:2024.3.3
+          python -m pytest -q -p no:cacheprovider tests
+
+  ha-stable:
+    name: HA stable, compile, and check_config
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: >-
+          docker run --rm
+          --volume "${{ github.workspace }}:/workspace:ro"
+          --workdir /workspace
+          --env PYTHONPATH=/workspace
+          ghcr.io/home-assistant/home-assistant:stable
+          python -m pytest -q -p no:cacheprovider tests
+      - run: >-
+          docker run --rm
+          --volume "${{ github.workspace }}/custom_components/domee:/component:ro"
+          --env PYTHONPYCACHEPREFIX=/tmp/pycache
+          ghcr.io/home-assistant/home-assistant:stable
+          python -m compileall -q /component
+      - run: >-
+          docker run --rm
+          --volume "${{ github.workspace }}/validation/config:/source-config:ro"
+          --volume "${{ github.workspace }}/custom_components/domee:/source-component:ro"
+          ghcr.io/home-assistant/home-assistant:stable
+          sh -c
+          "mkdir -p /tmp/config/custom_components &&
+          cp -R /source-config/. /tmp/config/ &&
+          cp -R /source-component /tmp/config/custom_components/domee &&
+          python -m homeassistant --script check_config --config /tmp/config"
+
+  coverage:
+    name: Production coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: >-
+          docker run --rm
+          --volume "${{ github.workspace }}:/workspace:ro"
+          --workdir /workspace
+          --env PYTHONPATH=/workspace
+          --env COVERAGE_FILE=/tmp/.coverage
+          ghcr.io/home-assistant/home-assistant:stable
+          sh -c
+          "python -m coverage run --branch --source=custom_components/domee -m pytest -q -p no:cacheprovider tests &&
+          python -m coverage report --fail-under=85"
+
+  ruff:
+    name: Ruff
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: >-
+          docker run --rm
+          --volume "${{ github.workspace }}:/workspace:ro"
+          --workdir /workspace
+          ghcr.io/astral-sh/ruff:0.12.9-alpine
+          ruff check --no-cache custom_components/domee tests validation scripts
+
+  hassfest:
+    name: Hassfest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: >-
+          docker run --rm
+          --volume "${{ github.workspace }}:/github/workspace:ro"
+          ghcr.io/home-assistant/hassfest:latest
+
+  hacs:
+    name: HACS validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hacs/action@main
+        with:
+          category: integration
+
+  package:
+    name: Package and privacy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python validation/metadata_guard.py
+      - run: python validation/secret_scan.py
+      - run: python scripts/build_release.py
+      - run: python validation/validate_package.py
